@@ -3,12 +3,10 @@ import axios from "axios";
 //+inauthor:keyes
 
 export default {
+  //Gets Google Book or Books with an API URL
   getGoogleBook: function(URL) {
     return axios.get(URL);
   },
-
-
-
 
   // Gets all books
   getBooks: function() {

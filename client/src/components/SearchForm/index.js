@@ -5,7 +5,7 @@ import "./searchForm.css";
 
 function SearchForm(props) {
   return (
-    <div className="form-group">
+    <div className="form-group searchForm">
     <label>Search Google Books</label>
       <input className="form-control searchField" placeholder="Type in the desired book name" onChange={(e) => props.handleChange(e)} />
       <br />

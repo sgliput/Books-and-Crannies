@@ -5,6 +5,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import SearchForm from "../components/SearchForm";
 import ResultArea from "../components/ResultArea";
+import "./style.css";
 
 class Search extends Component {
     state = {
@@ -69,7 +70,6 @@ class Search extends Component {
                         }
                     }
                 });
-                console.log(bookResults);
 
                 this.setState({
                     APILink: this.state.APILink + queryTitle,
@@ -78,7 +78,43 @@ class Search extends Component {
 
             })
             .catch(err => console.log(err));
-    }
+    };
+
+    handleSave = event => {
+        event.preventDefault();
+
+        API.getGoogleBook("https://www.googleapis.com/books/v1/volumes/" + event.target.dataset.id)
+            .then(res => {
+                if (res.data.volumeInfo.imageLinks) {
+                    const bookToSave = {
+                        title: res.data.volumeInfo.title,
+                        id: res.data.id,
+                        authors: res.data.volumeInfo.authors,
+                        description: res.data.volumeInfo.description.split("<p>").join("").split("</p>").join("\n").split("<b>").join(" ").split("</b>").join(" ").split("<i>").join(" ").split("</i>").join(" ").split("<br>").join("\n"),
+                        image: res.data.volumeInfo.imageLinks.smallThumbnail,
+                        link: res.data.volumeInfo.previewLink,
+                        rating: res.data.volumeInfo.averageRating,
+                        pageCount: res.data.volumeInfo.pageCount
+                    }
+                    API.saveBook(bookToSave)
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));
+                } else {
+                    const bookToSave = {
+                        title: res.data.volumeInfo.title,
+                        id: res.data.id,
+                        authors: res.data.volumeInfo.authors,
+                        description: res.data.volumeInfo.description.split(["<p>","</p>","<b>","</b>","<i>","</i>"]).join(""),
+                        link: res.data.volumeInfo.previewLink,
+                        rating: res.data.volumeInfo.averageRating,
+                        pageCount: res.data.volumeInfo.pageCount
+                    }
+                    API.saveBook(bookToSave)
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));
+                }
+            });
+    };
 
     render() {
         return (
@@ -89,11 +125,16 @@ class Search extends Component {
                 </Jumbotron>
                 <Container>
                     <Row>
-                        <SearchForm onSearch={this.onSearch} handleChange={this.handleInputChange} />
+                        <div className="searchRow">
+                            <SearchForm onSearch={this.onSearch} handleChange={this.handleInputChange} />
+                            <Link to={"/saved"}>
+                                <button className="toSaved">See Your Saved Books</button>
+                            </Link>
+                        </div>
                     </Row>
                     <br />
                     <Row>
-                        <ResultArea results={this.state.allInfo} />
+                        <ResultArea results={this.state.allInfo} handleSave={this.handleSave} />
                     </Row>
 
 

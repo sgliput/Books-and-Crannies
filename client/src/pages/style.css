@@ -1,0 +1,13 @@
+.searchRow{
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.searchForm{
+    float: left;
+}
+
+.toSaved{
+    float: right;
+}
