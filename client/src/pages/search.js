@@ -5,13 +5,16 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import SearchForm from "../components/SearchForm";
 import ResultArea from "../components/ResultArea";
+import Modal1 from "../components/Modal/modal.js";
 import "./style.css";
 
 class Search extends Component {
     state = {
         currentBook: "",
         APILink: "https://www.googleapis.com/books/v1/volumes?q=",
-        allInfo: []
+        allInfo: [],
+        showModal: "none",
+        savedBook: {}
     }
 
     componentDidMount() {
@@ -97,7 +100,10 @@ class Search extends Component {
                         pageCount: res.data.volumeInfo.pageCount
                     }
                     API.saveBook(bookToSave)
-                    .then(res => console.log(res))
+                    .then(res => {
+                        console.log(res);
+                        this.setState({savedBook: res.data});
+                    })
                     .catch(err => console.log(err));
                 } else {
                     const bookToSave = {
@@ -110,11 +116,21 @@ class Search extends Component {
                         pageCount: res.data.volumeInfo.pageCount
                     }
                     API.saveBook(bookToSave)
-                    .then(res => console.log(res))
+                    .then(res => {
+                        console.log(res);
+                        this.setState({savedBook: res.data});
+                        console.log(this.state.savedBook);
+                    })
                     .catch(err => console.log(err));
                 }
+                this.setState({showModal: "block"});
             });
     };
+
+    //Handles hiding both modals when their X's are clicked
+  closeModal = () => {
+    this.setState({ showModal: "none" });
+  }
 
     render() {
         return (
@@ -136,10 +152,8 @@ class Search extends Component {
                     <Row>
                         <ResultArea results={this.state.allInfo} handleSave={this.handleSave} />
                     </Row>
-
-
-
                 </Container>
+                <Modal1 show={this.state.showModal} savedBook={this.state.savedBook} closeModal={this.closeModal} />
             </div>
         )
 

@@ -23,7 +23,7 @@ function ResultArea(props) {
 
     return (
         <div className="resultArea">
-            <label>Results from Google Books:</label>
+            <h4>Results from Google Books:</h4>
             {resultCards}
         </div>
     );

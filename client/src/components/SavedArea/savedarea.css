@@ -1,3 +1,17 @@
+.savedArea{
+    border: 3px solid black;
+    padding: 10px;
+    background-color: tan;
+}
+
+.card:first-of-type {
+    margin-top: 25px;
+}
+
+.card{
+    margin-bottom: 20px;
+}
+
 .thumbnail{
     height: 250px;
     width: 180px;

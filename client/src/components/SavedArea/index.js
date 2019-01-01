@@ -8,7 +8,7 @@ function SavedArea(props) {
     const resultCards = props.results.map(book => (
         <div className="card" key={book.id}>
             <div className="topRow">
-                <button className="btn btn-success delete" data-id={book.id} onClick={(e) => props.deleteBook(e)}>Delete Yes</button>
+                <button className="btn btn-success delete" data-id={book.id} onClick={(e) => props.deleteBook(e)}>Delete</button>
                 <img className="thumbnail" alt={book.title} src={book.image} />
                 <a href={book.link} className="title"><h4>{book.title}</h4></a>
                 {book.authors ? <p>{book.authors.length > 1 ? "Authors" : "Author"}: {book.authors.toString().split(",").join(", ")}</p> : <p className="unavailable">Author Unknown</p>}
@@ -21,8 +21,8 @@ function SavedArea(props) {
     ));
 
     return (
-        <div className="SavedArea">
-            <label>Your Saved Google Books:</label>
+        <div className="savedArea">
+            <h4>Your Saved Google Books:</h4>
             {resultCards}
         </div>
     );
