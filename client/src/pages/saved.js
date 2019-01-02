@@ -65,8 +65,10 @@ class Saved extends Component {
                     <br />
                     <Row>
                         <SavedArea results={this.state.savedBooks} id={this.state.id} deleteBook={this.deleteBook} />
+                        <br />
                     </Row>
                 </Container>
+
                 <Modal2 show={this.state.showModal} deletedBook={this.state.deletedBook} closeModal={this.closeModal} />
             </div>
         )

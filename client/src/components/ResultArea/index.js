@@ -22,9 +22,13 @@ function ResultArea(props) {
     ));
 
     return (
-        <div className="resultArea">
-            <h4>Results from Google Books:</h4>
-            {resultCards}
+        <div>
+            {props.results.length > 0 ?
+                <div className="resultArea">
+                    <h4>Results from Google Books:</h4>
+                    {resultCards}
+                </div>
+                : ""}
         </div>
     );
 }
