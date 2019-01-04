@@ -1,3 +1,7 @@
+body{
+    background-color: orange;
+}
+
 .searchRow{
     flex-direction: row;
     justify-content: flex-end;
@@ -11,3 +15,17 @@
 .toSaved{
     float: right;
 }
+
+h1, h3, button, label{
+    font-family: 'Special Elite', cursive; 
+}  
+
+.btn{
+    font-family: 'Special Elite', cursive;
+    letter-spacing: 0.3rem;
+}
+
+p, h4{
+    font-family: 'Volkhov', serif;
+}
+

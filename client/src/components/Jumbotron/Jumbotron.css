@@ -3,5 +3,14 @@
     clear: both;
     padding-top: 120;
     text-align: center;
-    color: green;
+    color: orange;
+    background-color: green;
+    width: 90%;
+    margin: 2% auto;
+    border: 2px solid black;
+    border-radius: 30px;
+}
+
+h1, .jumbotron h3{
+    text-shadow: 2px 2px black;
 }

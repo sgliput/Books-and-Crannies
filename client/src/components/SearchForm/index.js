@@ -7,7 +7,7 @@ function SearchForm(props) {
   return (
     <div className="form-group searchForm">
     <label>Search Google Books</label>
-      <input className="form-control searchField" placeholder="Type in the desired book name" onChange={(e) => props.handleChange(e)} />
+      <input className="form-control searchField" placeholder="Type a book name or search term" onChange={(e) => props.handleChange(e)} />
       <br />
       <button className="btn btn-success search" onClick={(e) => props.onSearch(e)}>Search</button>
     </div>

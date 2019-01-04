@@ -10,8 +10,8 @@ return (
             <div className="modal-header">
             <h2>You just deleted this book.</h2>
                 <span className="close" onClick={props.closeModal}>&times;</span>
-                
             </div>
+            {/* Displays deleted book information in modal */}
             <div className="modal-body">
             <img className="thumbnail" alt={props.deletedBook.title} src={props.deletedBook.image} />
             <a href={props.deletedBook.link} className="title"><h4>{props.deletedBook.title}</h4></a>
